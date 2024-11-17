@@ -1,0 +1,72 @@
+.login {
+    height: 65vh;
+    width: 65vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(197, 198, 199, 0.2);
+
+    overflow: auto;
+}
+
+.login #form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login form {
+    width: 60%;
+}
+
+.login form div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login form #form_4 {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: relative;
+    left: 38px;
+}
+
+.login form button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    padding: 15px 5%;
+    font-size: 20px;
+    width: 90%;
+    margin-bottom: 20px;
+    border: 0;
+    background: #1F2833CC;
+    color: white;
+}
+
+.login form input {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    padding: 15px 5%;
+    font-size: 20px;
+    width: 90%;
+    margin-bottom: 10px;
+    background: #1F2833CC;
+    color: white;
+    box-sizing: border-box;
+}
+
+.login form p {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+}

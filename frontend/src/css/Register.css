@@ -1,0 +1,65 @@
+.register {
+    height: 95vh;
+    width: 65vw;
+
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(197, 198, 199, 0.2);
+
+    overflow: overlay;
+}
+
+.register #form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register form {
+    width: 60%;
+}
+
+.register form div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register form button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    padding: 15px 5%;
+    font-size: 20px;
+    width: 90%;
+    margin-bottom: 10px;
+    border: 0;
+    background: #1F2833CC;
+    color: white;
+}
+
+.register form input {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    padding: 15px 5%;
+    font-size: 20px;
+    width: 90%;
+    margin-bottom: 10px;
+    background: #1F2833CC;
+    color: white;
+    box-sizing: border-box;
+}
+
+.register form p {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+}
