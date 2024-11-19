@@ -8,6 +8,8 @@ from fastapi import FastAPI, File, UploadFile, HTTPException, status, Request, D
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
+from fastapi.staticfiles import StaticFiles
+
 
 
 from typing import TYPE_CHECKING, List
@@ -20,6 +22,8 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="img"), name="static")
 
 @app.middleware("http")
 async def set_forwarded_proto(request: Request, call_next):
