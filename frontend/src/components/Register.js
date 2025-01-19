@@ -79,7 +79,6 @@ class Register extends React.Component {
                         && (this.state.password !== this.state.rep_password)
                         && "Введёные пароли не совпадают"}
                     </p>
-                    <br />
                     <button
                         type="button"
                         disabled={
@@ -114,7 +113,6 @@ class Register extends React.Component {
                         Регистрация
                     </button>
                     <p>{this.state.error && `Ошибка: ${this.state.error}`}</p>
-                    {/* <br /><br /> */}
                     <p>
                         Уже зарегестрированы?&nbsp;
                     </p>

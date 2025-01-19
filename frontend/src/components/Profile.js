@@ -10,8 +10,8 @@ class Profile extends React.Component {
     this.state = {
       firstName: this.props.userData.firstName,
       lastName: this.props.userData.lastName,
-      pathToImage: null,
-      image: null,
+      imageSrc: null,
+      imageRef: null,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -22,7 +22,7 @@ class Profile extends React.Component {
     const fileInfo = event.target.files[0] 
     
     var now = new Date()
-    const day = now.getDate() + '-' + now.getMonth() + '-' + now.getFullYear()
+    const day = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear()
     const time = now.getHours() + '-' + now.getMinutes() + '-' + now.getSeconds()
     const user = this.state.firstName + this.state.lastName
     // const filename = fileInfo.name.split(".")[0]
@@ -30,29 +30,18 @@ class Profile extends React.Component {
     const stamp = `${day}_${time}_${user}_${fileInfo.name}`
     const fileProcessed = new File([fileInfo], stamp, {type: fileInfo.type});
     
-    var formData = new FormData()
-    formData.append("file", fileProcessed)
+    if (fileProcessed && fileProcessed.type.startsWith('image/')) {
+      const reader = new FileReader();
 
-    try {
-      let response = await fetch(`${BACKEND_URL}/save_image`, {
-        method: 'POST',
-        body: formData
-      })
-
-      if (!response.ok) {
-        alert(`Произошла ошибка: ${response.status}`)
-        return
-      }
-
-      // var responseJSON = await response.json()
-      const uploadedImg = require(`../../img/${stamp}`)
-      this.setState({image: uploadedImg}, () => {})
-      this.setState({pathToImage: `../../img/${stamp}`}, () => {console.log(this.state.pathToImage)})
+    reader.onload = (e) => {
+      this.setState({ imageSrc: e.target.result},
+      //  () => {onsole.log(this.state.imageSrc);}
+      )
     }
-    catch (err) {
-      alert(`Ошибка: ${err}`)
-    }
+
+    reader.readAsDataURL(fileInfo)
   }
+}
 
   async handleUploadImage() {
 
@@ -97,23 +86,23 @@ class Profile extends React.Component {
                 this.handleChange(event)
               }} />
             </form>
-            {this.state.pathToImage && (<br />)}
-            {this.state.pathToImage && (
+            {this.state.imageSrc && (<br />)}
+            {this.state.imageSrc && (
               <div id="imageMagnifyer">
                 <ReactImageMagnify {...{
                       smallImage: {
                           alt: 'Загруженное изображение',
                           isFluidWidth: true,
-                          src: this.state.image,
+                          src: this.state.imageSrc,
                       },
                       largeImage: {
-                          src: this.state.image,
+                          src: this.state.imageSrc,
                           width: 2560,
                           height: 1920
                       },
-                      enlargedImageStyle: {
-                          objectFit: "contain",
-                      },
+                      // enlargedImageStyle: {
+                      //     objectFit: "contain",
+                      // },
                       isHintEnabled: true,
                       shouldHideHintAfterFirstActivation: false,
                       isActivatedOnTouch: true,
@@ -121,9 +110,9 @@ class Profile extends React.Component {
                 </div>
                 )
               }
-            {this.state.pathToImage && (<img src={this.state.image} alt={this.state.pathToImage}/>)}
-            {this.state.pathToImage && (<br/>)}
-            <button disabled={!this.state.pathToImage} onClick={() => {
+            {/* {this.state.imageSrc && (<img src={this.state.imageSrc} alt={this.state.imageSrc}/>)} */}
+            {this.state.imageSrc && (<br/>)}
+            <button disabled={!this.state.imageSrc} onClick={() => {
               this.handleUploadImage()
               this.myForm.reset()
             }}>Обработать изображение</button>
